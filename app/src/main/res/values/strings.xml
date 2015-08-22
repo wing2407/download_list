@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Download</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_xutils">xutils 框架</string>
+    <string name="title_activity_afinal">Afinal 框架</string>
+
+    <item type="id" name="ab__id_adapter_item_position" />
+    <item type="id" name="ab__id_adapter_item" />
+</resources>

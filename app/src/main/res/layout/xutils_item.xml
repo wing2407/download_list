@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <ProgressBar
+        android:id="@+id/pb_xutils"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_current_xutils"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingTop="30dp"
+        android:gravity="center"
+        android:text="字节" />
+
+    <TextView
+        android:id="@+id/tv_percent_xutils"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:layout_toRightOf="@id/tv_current_xutils"
+        android:text="百分比"
+        android:gravity="center"
+        android:paddingTop="30dp" />
+
+    <Button
+        android:id="@+id/btn_xutils_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="开始"
+        android:focusable="false"/>
+
+
+</RelativeLayout>
