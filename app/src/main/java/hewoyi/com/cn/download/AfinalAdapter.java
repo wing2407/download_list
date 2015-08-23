@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.HttpHandler;
@@ -86,9 +87,8 @@ public class AfinalAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View convertView) {
                     int position = (Integer) convertView.getTag();
-                    Log.d("Adapter", "final:" + position);
 
-                    Log.d("Adapter", "position: " + (position - lv.getFirstVisiblePosition()));
+                    Log.d("Adapter", "final position: " + (position - lv.getFirstVisiblePosition()));
                     //获取被点击Item的view，然后得到各控件，无奈要声明为final，但不影响使用
                     final View childAt = lv.getChildAt(position - lv.getFirstVisiblePosition());
                     final Button start_afinal = (Button) childAt.findViewById(R.id.btn_afinal_start);
@@ -98,21 +98,33 @@ public class AfinalAdapter extends BaseAdapter {
 
                     switch (state) {
                         case START:
-                            Toast.makeText(mContext,"position"+position+"\n不用点了....网上查了是框架编译器版本问题...fuck！浪费我时间\n提示：method does not override method from its superclass",Toast.LENGTH_LONG).show();
-                               /* handler = fh.download("http://www.xxx.com/下载路径/xxx.apk", //这里是下载的路径
-                                        true,//true:断点续传 false:不断点续传（全新下载）
-                                        "/mnt/sdcard/testapk.apk", //这是保存到本地的路径
-                                        new AjaxCallBack() {
+                           // Toast.makeText(mContext,"position"+position+"\n不用点了....网上查了是框架编译器版本问题...fuck！浪费我时间\n提示：method does not override method from its superclass",Toast.LENGTH_LONG).show();
+                                handler = fh.download(url.get(position),
+                                        "/mnt/sdcard/"+position+".apk",
+                                        true,
+                                        new AjaxCallBack<File>() {
+
                                             @Override
-                                            public void onLoading(long count, long current) {
-                                                tv_current.setText("下载进度："+current+"/"+count);
+                                            public void onStart() {
+                                                start_afinal.setText("停止");
                                             }
 
+                                            @Override
+                                            public void onLoading(long count, long current) {
+                                                tv_current.setText(current+ "/" + count);
+                                                tv_percent.setText(current * 100 / count + "%");
+                                                pb_cutils.setProgress((int) (current * 100 / count));
+                                            }
                                             @Override
                                             public void onSuccess(File t) {
                                                 tv_current.setText(t == null ? "null" : t.getAbsoluteFile().toString());
+                                                start_afinal.setText("完成");
+                                                Log.d("Adapter", "finish");
                                             }
-
+                                            @Override
+                                            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                                                Log.d("Adapter", strMsg);
+                                            }
                                         });
                                 //设状态为可停止
                                 state = STOP;
@@ -128,7 +140,7 @@ public class AfinalAdapter extends BaseAdapter {
                                 break;
                             default:
                                 Log.d("Adapter", "position: " + (position - lv.getFirstVisiblePosition()));
-                                break;*/
+                                break;
                     }
                 }
             });
